@@ -1,12 +1,12 @@
 // src/pages/ProjectDetailsPage.jsx
 
 import { useState, useEffect } from "react";
-import axios from "axios";
+
 import { Link, useParams } from "react-router-dom";
 import AddTask from "../components/AddTask";
 import TaskCard from "../components/TaskCard";
 
-const API_URL = "http://localhost:3000";
+import { get } from "../services/authService";
 
 
 function ProjectDetailsPage () {
@@ -16,7 +16,7 @@ function ProjectDetailsPage () {
 
     const getProject = (id) => {
 
-        axios.get(API_URL + `/projects/${id}`)
+        get(`/projects/${id}`)
             .then((response) => {
                 console.log("Found project ==>", response.data)
                 setProject(response.data)

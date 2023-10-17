@@ -1,9 +1,7 @@
 // src/components/AddProject.jsx
 
 import { useState } from "react";
-import axios from "axios";
-
-const API_URL = "http://localhost:3000";
+import { post } from "../services/authService";
 
 function AddProject({ refreshProjects, updateProjects }) {
   const [title, setTitle] = useState("");
@@ -13,8 +11,8 @@ function AddProject({ refreshProjects, updateProjects }) {
     e.preventDefault();
  
     const requestBody = { title, description };
-    axios
-      .post(`${API_URL}/projects`, requestBody)
+
+      post('/projects', requestBody)
       .then((response) => {
         console.log("New Project ===>", response.data)
         updateProjects(response.data)

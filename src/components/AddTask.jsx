@@ -1,9 +1,8 @@
 // src/components/AddTask.jsx
 
 import { useState } from "react";
-import axios from "axios";
 
-const API_URL = "http://localhost:3000";
+import { post } from "../services/authService";
 
 
 function AddTask({ refreshProject, projectId }) {
@@ -19,8 +18,7 @@ function AddTask({ refreshProject, projectId }) {
     // Create an object representing the body of the POST request
     const requestBody = { title, description, projectId };
  
-    axios
-      .post(`${API_URL}/tasks`, requestBody)
+    post('/tasks', requestBody)
       .then((response) => {
         console.log("After new task ===>", response.data)
         // Reset the state to clear the inputs
